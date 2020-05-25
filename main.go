@@ -1,17 +1,17 @@
 package main
 
-
-import {
-	"log",
-	"github.com/gofiber/giber",
-	"github.com/boltdb/bolt",
+import (
 	"fmt"
-}
+	"log"
 
+	"github.com/boltdb/bolt"
+	"github.com/gofiber/fiber"
+	"github.com/mikkybang/url-shortener/store"
+)
 
+func initStore() {
 
-func initStore(){
-	db, err := bolt.Open("store.db", 0600, nil)
+	store.storeConn, err := bolt.Open("store.db", 0600, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -23,7 +23,10 @@ func main() {
 	app := fiber.New()
 
 	initStore()
-	
-	defer db.Close()
+	defer store.storeConn.Close()
+
+	app.Static("/", "./public")
+
+	app.Listen(8000)
 
 }
