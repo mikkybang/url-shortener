@@ -8,6 +8,10 @@ import (
 	"github.com/gofiber/fiber"
 )
 
+func setupRoutes(){
+	api := app.Group("/api", cors())
+	
+}
 
 
 func main() {
