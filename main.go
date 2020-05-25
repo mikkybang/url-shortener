@@ -17,7 +17,6 @@ func initStore(){
 	}
 
 	fmt.Println("Connection to store opened")
-
 }
 
 func main() {
