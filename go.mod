@@ -3,6 +3,7 @@ module github.com/mikkybang/url-shortener
 go 1.12
 
 require (
+	github.com/boltdb/bolt v1.3.1 // indirect
 	github.com/gofiber/fiber v1.9.6 // indirect
 	github.com/klauspost/compress v1.10.6 // indirect
 	github.com/yuin/goldmark v1.1.31 // indirect
