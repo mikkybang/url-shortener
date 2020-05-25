@@ -1,4 +1,4 @@
-package shortener
+package link
 
 import (
 	"github.com/boltdb/bolt"
@@ -11,7 +11,7 @@ func createUrl(c *fiber.Ctx) {
 }
 
 func RedirectUrl(c *fiber.Ctx) {
-	a
+	
 }
 
 
