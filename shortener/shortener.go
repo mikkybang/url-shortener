@@ -1,13 +1,18 @@
 package shortener
 
 import (
-	"log"
-	"github.com/gofiber/fiber"
 	"github.com/boltdb/bolt"
+	"github.com/gofiber/fiber"
+	"log"
 )
 
-
-func newUrl( c *fiber.Ctx){
+func createUrl(c *fiber.Ctx) {
 
 }
+
+func RedirectUrl(c *fiber.Ctx) {
+	a
+}
+
+
 
