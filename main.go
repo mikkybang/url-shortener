@@ -8,11 +8,14 @@ import (
 	"github.com/gofiber/fiber"
 )
 
-func setupRoutes(){
-	api := app.Group("/api", cors())
-	
-}
+func setupRoutes(app *fiber.App) {
+	api := app.Group("/api")
 
+	api.Get("/test", func(c *fiber.Ctx) {
+		c.JSON("test")
+	})
+
+}
 
 func main() {
 	app := fiber.New()
@@ -24,6 +27,8 @@ func main() {
 
 	fmt.Println("Connection to store opened")
 	defer db.Close()
+
+	setupRoutes(app)
 
 	app.Static("/", "./public")
 
