@@ -4,6 +4,7 @@ go 1.12
 
 require (
 	github.com/boltdb/bolt v1.3.1
+	github.com/bradialabs/shortid v0.0.0-20151125022905-6681686bf476
 	github.com/gofiber/fiber v1.9.6
 	github.com/klauspost/compress v1.10.6 // indirect
 	github.com/yuin/goldmark v1.1.31 // indirect

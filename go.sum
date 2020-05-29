@@ -1,5 +1,7 @@
 github.com/boltdb/bolt v1.3.1 h1:JQmyP4ZBrce+ZQu0dY660FMfatumYDLun9hBCUVIkF4=
 github.com/boltdb/bolt v1.3.1/go.mod h1:clJnj/oiGkjum5o1McbSZDSLxVThjynRyGBgiAx27Ps=
+github.com/bradialabs/shortid v0.0.0-20151125022905-6681686bf476 h1:lAwZzvtpwwdZrL5RzSNaDie4Z22QBCZD+ixu1G91VxI=
+github.com/bradialabs/shortid v0.0.0-20151125022905-6681686bf476/go.mod h1:9jhM0sgvX3+WCWgcbSAgygvMD6jtJLfwHRX3/1ulwJU=
 github.com/gofiber/fiber v1.9.6 h1:HtzOdbdNn/K/NlMMLbCNkiI79Ft0zjio7STcgY/Rox0=
 github.com/gofiber/fiber v1.9.6/go.mod h1:o2YQgwJW8+Z16x8MTos4nYn8PD1RJpzu9fojiGqjSjI=
 github.com/gorilla/schema v1.1.0 h1:CamqUDOFUBqzrvxuz2vEwo8+SUdwsluFh7IlzJh30LY=
