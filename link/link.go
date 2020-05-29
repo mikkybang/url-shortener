@@ -1,7 +1,9 @@
 package link
 
 import (
+	"bytes"
 	"fmt"
+	"strings"
 
 	"github.com/boltdb/bolt"
 	"github.com/bradialabs/shortid"
@@ -28,7 +30,7 @@ func CreateUrl(c *fiber.Ctx) {
 	s := shortid.New()
 	link.Hash = s.Generate()
 
-	key := []byte(link.Hash)
+	key := []byte(strings.ToLower(link.Hash))
 	value := []byte(link.Url)
 
 	fmt.Println(key, value)
@@ -50,26 +52,33 @@ func CreateUrl(c *fiber.Ctx) {
 
 func RedirectUrl(c *fiber.Ctx) {
 	store := store.Db
-	
-	
 
-	err := store.View(func(tx *bolt.Tx) error {
+	urlkey := c.Params("url")
+
+	key := []byte(urlkey)
+
+	store.View(func(tx *bolt.Tx) error {
 		bucket := tx.Bucket(buk)
 		if bucket == nil {
 			return fmt.Errorf("Bucket %q not found!", buk)
 		}
 
-		val := bucket.Get(key)
-		url := string(val))
-		
-		if url != nil {
-			return c.Redirect(url)
+		url := ""
+
+		cr := bucket.Cursor()
+
+		for k, v := cr.First(); k != nil; k, v = cr.Next() {
+			fmt.Println(string(k), string(v))
+			fmt.Println(k, v)
+			fmt.Println(key, string(key))
+			if bytes.Equal(key, k) {
+				url = string(v)
+				break
+			}
 		}
 
+		c.Redirect(url)
+
+		return nil
 	})
-
-	if err != nil {
-		c.Status(500).Send(err)
-	}
-
 }

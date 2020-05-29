@@ -15,6 +15,8 @@ func setupRoutes(app *fiber.App) {
 
 	api.Post("/create", link.CreateUrl)
 
+	app.Get("/:url", link.RedirectUrl)
+
 	api.Get("/test", func(c *fiber.Ctx) {
 		c.JSON("test")
 	})
