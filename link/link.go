@@ -1,13 +1,20 @@
 package link
 
 import (
+	"log"
+
 	"github.com/boltdb/bolt"
 	"github.com/gofiber/fiber"
-	"log"
 )
 
-func createUrl(c *fiber.Ctx) {
+type Link struct {
+	OriginLink  string `json: "title"`
+	 string `json: "author"`
+	Rating int    `json: "rating"`
+}
 
+func createUrl(c *fiber.Ctx) {
+	
 }
 
 func RedirectUrl(c *fiber.Ctx) {

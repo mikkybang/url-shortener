@@ -6,6 +6,7 @@ import (
 
 	"github.com/boltdb/bolt"
 	"github.com/gofiber/fiber"
+	"github.com/mikkybang/url-shortener/store"
 )
 
 func setupRoutes(app *fiber.App) {
@@ -17,16 +18,26 @@ func setupRoutes(app *fiber.App) {
 
 }
 
-func main() {
-	app := fiber.New()
+func setupStorage() {
+	var err error
 
 	db, err := bolt.Open("store.db", 0600, nil)
+
+	store.Db = db
+	
 	if err != nil {
 		log.Fatal(err)
 	}
-
+	
 	fmt.Println("Connection to store opened")
-	defer db.Close()
+}
+
+func main() {
+	app := fiber.New()
+
+	setupStorage()
+
+	defer store.Db.Close()
 
 	setupRoutes(app)
 

@@ -4,5 +4,6 @@ import (
 	"github.com/boltdb/bolt"
 )
 
-
-var 
+var (
+	Db *bolt.DB
+)
