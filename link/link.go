@@ -1,8 +1,7 @@
 package link
 
 import (
-	"encoding/json"
-	"time"
+	"fmt"
 
 	"github.com/boltdb/bolt"
 	"github.com/bradialabs/shortid"
@@ -11,42 +10,66 @@ import (
 )
 
 type Link struct {
-	Url       string    `json: "url"`
-	hash      string    `json: "hash"`
-	createdAt time.Time `json:"created_at" bson:"created_at"`
+	Url  string `json: "url"`
+	Hash string `json: "hash"`
 }
+
+var buk = []byte("link")
 
 func CreateUrl(c *fiber.Ctx) {
 	store := store.Db
+
 	link := new(Link)
+
 	if err := c.BodyParser(link); err != nil {
 		c.Status(503).Send(err)
 		return
 	}
 	s := shortid.New()
-	link.hash = s.Generate()
-	link.createdAt = time.Now()
+	link.Hash = s.Generate()
 
-	newLink, err := json.Marshal(link)
+	key := []byte(link.Hash)
+	value := []byte(link.Url)
 
-	if err != nil {
-		c.Status(503).Send(err)
-		return
-	}
+	fmt.Println(key, value)
 
-	error := store.Update(func(tx *bolt.Tx) error {
-		b := tx.Bucket([]byte("Link"))
-		err := b.Put([]byte(link.Url), newLink)
-		return err
+	err := store.Update(func(tx *bolt.Tx) error {
+		b, err := tx.CreateBucketIfNotExists(buk)
+		if err != nil {
+			c.Status(503).Send(err)
+		}
+		return b.Put(key, value)
 	})
 
-	if err != null {
-		c.Status(503).Send(err)
-		return
+	if err != nil {
+		c.Status(500).Send(err)
 	}
-	c.Status(200).JSON(newLink)
+
+	c.Status(200).JSON(link)
 }
 
 func RedirectUrl(c *fiber.Ctx) {
+	store := store.Db
+	
+	
+
+	err := store.View(func(tx *bolt.Tx) error {
+		bucket := tx.Bucket(buk)
+		if bucket == nil {
+			return fmt.Errorf("Bucket %q not found!", buk)
+		}
+
+		val := bucket.Get(key)
+		url := string(val))
+		
+		if url != nil {
+			return c.Redirect(url)
+		}
+
+	})
+
+	if err != nil {
+		c.Status(500).Send(err)
+	}
 
 }
