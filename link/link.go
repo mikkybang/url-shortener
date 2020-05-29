@@ -30,7 +30,7 @@ func CreateUrl(c *fiber.Ctx) {
 	s := shortid.New()
 	link.Hash = s.Generate()
 
-	key := []byte(strings.ToLower(link.Hash))
+	key := []byte(link.Hash)
 	value := []byte(link.Url)
 
 	fmt.Println(key, value)

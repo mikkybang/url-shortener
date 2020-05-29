@@ -40,6 +40,8 @@ func setupStorage() {
 func main() {
 	app := fiber.New()
 
+	app.Settings.CaseSensitive = true
+
 	setupStorage()
 
 	defer store.Db.Close()
