@@ -6,7 +6,7 @@ if (form){
 
         const url = form.url.value
         const submitBtn = document.getElementById("submit-btn");
-        
+
         submitBtn.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="false"></span>`;
 
         const body = {
@@ -20,8 +20,6 @@ if (form){
             },
             body: JSON.stringify(body)
           }
-        ).then(
-            res
         )
 
         const response = await result.json()
