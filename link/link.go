@@ -11,8 +11,8 @@ import (
 )
 
 type Link struct {
-	Url  string `json: "url"`
-	Hash string `json: "hash"`
+	Url  string `json:"url"`
+	Hash string `json:"hash"`
 }
 
 var buk = []byte("link")
