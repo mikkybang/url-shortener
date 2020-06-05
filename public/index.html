@@ -8,11 +8,21 @@
 </head>
 <body>
 
+    <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1">Supposed URL shortner</span>
+      </nav>
+    <div class="container">
+    
+        <h4>Welcome to the simplest url shortner you would ever see</h4>
+
     <form id="shorten-form">
+    <div class="form-group">
     Enter your Link below to Shorten
-    <input type="text" name="url"/> 
+    <input type="text" name="url"/>
+    </div>
  
-    <button type="submit" >Shorten</button>
+    <button type="submit" id="submit-btn" class="btn btn-primary text-center">Shorten</button>
+</div>
 </form>
 <script src="./app.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
