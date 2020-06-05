@@ -33,7 +33,7 @@ func CreateUrl(c *fiber.Ctx) {
 
 	value := []byte(link.Url)
 
-	fmt.Println(key, value)
+	fmt.Println(link.Hash, link.Url)
 
 	err := store.Update(func(tx *bolt.Tx) error {
 		b, err := tx.CreateBucketIfNotExists(buk)
