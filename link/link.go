@@ -3,7 +3,6 @@ package link
 import (
 	"bytes"
 	"fmt"
-	"strings"
 
 	"github.com/boltdb/bolt"
 	"github.com/bradialabs/shortid"
@@ -31,6 +30,7 @@ func CreateUrl(c *fiber.Ctx) {
 	link.Hash = s.Generate()
 
 	key := []byte(link.Hash)
+
 	value := []byte(link.Url)
 
 	fmt.Println(key, value)
@@ -68,16 +68,13 @@ func RedirectUrl(c *fiber.Ctx) {
 		cr := bucket.Cursor()
 
 		for k, v := cr.First(); k != nil; k, v = cr.Next() {
-			fmt.Println(string(k), string(v))
-			fmt.Println(k, v)
-			fmt.Println(key, string(key))
 			if bytes.Equal(key, k) {
 				url = string(v)
 				break
 			}
 		}
 
-		c.Redirect(url)
+		c.Redirect("http://" + url)
 
 		return nil
 	})

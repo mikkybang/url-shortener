@@ -46,9 +46,9 @@ func main() {
 
 	defer store.Db.Close()
 
-	setupRoutes(app)
-
 	app.Static("/", "./public")
+
+	setupRoutes(app)
 
 	app.Listen(8000)
 
