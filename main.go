@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/boltdb/bolt"
 	"github.com/gofiber/fiber"
@@ -36,6 +37,14 @@ func setupStorage() {
 
 	fmt.Println("Connection to store opened")
 }
+
+func getPort() string {
+	p := os.Getenv("PORT")
+	if p != "" {
+	  return ":" + p
+	}
+	return ":3000"
+  }
 
 func main() {
 	app := fiber.New()
