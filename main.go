@@ -41,10 +41,10 @@ func setupStorage() {
 func getPort() string {
 	p := os.Getenv("PORT")
 	if p != "" {
-	  return ":" + p
+		return p
 	}
-	return ":3000"
-  }
+	return "8000"
+}
 
 func main() {
 	app := fiber.New()
@@ -59,6 +59,7 @@ func main() {
 
 	setupRoutes(app)
 
-	app.Listen(8000)
+	port := getPort()
+	app.Listen(port)
 
 }
