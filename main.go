@@ -26,6 +26,7 @@ func setupRoutes(app *fiber.App) {
 
 func setupStorage() {
 	var err error
+	log.Print('here')
 
 	db, err := bolt.Open("store.db", 0600, nil)
 
